@@ -96,7 +96,6 @@ int BinarySearch(int key, City arrayCity[], int left, int right)
             right = pos - 1;
         }
     }
-
 return result;
 }
 
