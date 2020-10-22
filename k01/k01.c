@@ -126,7 +126,7 @@ int main(void)
         printf("city was not found\n");
     }
 
-    printf("\n===== binary search =====\n");
+    printf("\n===== binary search =====\n");424
     printf("City ID?");
     scanf("%d", &key);
     result = BinarySearch(key, arrayCity, 0, MAX_CITY - 1);
