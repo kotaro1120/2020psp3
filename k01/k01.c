@@ -138,6 +138,6 @@ int main(void)
 
     //  後処理
     free(arrayCity);
-
+ 
     return 0;
 }
