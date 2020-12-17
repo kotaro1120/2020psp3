@@ -43,6 +43,7 @@ char* BMSearch(char text[], char key[])
         text_len++;
     }
     
+    
     while(key[key_len] != '\0')
     {
         key_len++;
