@@ -93,7 +93,7 @@ int pos, cnt;
             }
         }
     }
-}
+} 
 
 
 void QuickSort(City arrayCity[], int left, int right)
