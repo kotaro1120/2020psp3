@@ -10,83 +10,41 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
-    int start = 0, pos = 0, key_len, text_len;
+    int i,pos,newindex,index,keyindex,textlen=strlen(text),keylen=strlen(key);
+    int table[256];
 
-    text_len = strlen(text);
-    key_len = strlen(key);
+    for(i=0;i<256;i++){
+        table[i]=keylen;
+    }   
 
-    for(start=0; start<text_len-key_len; start++)
-    {
-        for(pos=0; pos<key_len; pos++)
-    {
-        if(text[start+pos] != key[pos])
-        {
-            break;
-        }
-        if(pos==key_len-1)
-        {
-            return key;
-        }
+    for(i=0;i<keylen;i++){
+        table[(int)key[i]]=keylen-(i+1);
     }
-    
+
+    newindex=keylen-1;
+    while(newindex<textlen){
+        index=newindex;
+
+        for(keyindex=keylen-1;keyindex>=0;keyindex--,newindex--){
+            if(text[newindex]==key[keyindex]){
+                if(keyindex==0){
+                    return text+newindex;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        
+    newindex=index+table[(int)text[index]];
+
+        if(index>=newindex){
+            newindex=index+1;
     }
+}
 return NULL;
 }
 
-char* BMSearch(char text[], char key[])
-{
-    //  ここを実装する
-    int index, text_len = 0, key_len = 0, key_index, i, index_record, table[256];
-
-    while(text[text_len] != '\0')
-    {
-        text_len++;
-    }
-    
-    
-    while(key[key_len] != '\0')
-    {
-        key_len++;
-    }
-
-
-    for(i=0; i<256; i++)
-    {
-        table[i] = key_len;
-    }
-    for(i=0; i<key_len; i++)
-    {
-        table[(int)key[i]] = key_len - 1;
-    }
-
-    index = key_len - 1;
-
-    while(index < text_len)
-    {
-        index_record = index;
-        for(key_index=key_len-1; key_index>=0; key_index--, index--)
-        {
-         if(text[index] == key[key_index])
-         {
-                if(key_index==0)
-            {
-                return text + index;
-            }
-         }else
-            {
-            break;
-            }   
-        }
-
-        index = index + table[(int)text[index]];
-
-        if(index<=index_record)
-        {   
-            index = index_record + 1;
-        }
-    }
-    return NULL;
-}
 int main(void)
 {
     char*   str;
