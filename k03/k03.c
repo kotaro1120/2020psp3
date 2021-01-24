@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <string.h>
 #define DEBUG
 
 #define ALPHABET_LEN    255
@@ -10,13 +10,39 @@ char StrKey[] = "wind";
 char* ForceSearch(char text[], char key[])
 {
     //  ここを実装する
+    int i,pos,newindex,index,keyindex,textlen=strlen(text),keylen=strlen(key);
+    int table[256];
 
+    for(i=0;i<256;i++){
+        table[i]=keylen;
+    }   
+
+    for(i=0;i<keylen;i++){
+        table[(int)key[i]]=keylen-(i+1);
+    }
+
+    newindex=keylen-1;
+    while(newindex<textlen){
+        index=newindex;
+
+        for(keyindex=keylen-1;keyindex>=0;keyindex--,newindex--){
+            if(text[newindex]==key[keyindex]){
+                if(keyindex==0){
+                    return text+newindex;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        
+    newindex=index+table[(int)text[index]];
+
+        if(index>=newindex){
+            newindex=index+1;
+    }
 }
-
-char* BMSearch(char text[], char key[])
-{
-    //  ここを実装する
-
+return NULL;
 }
 
 int main(void)
