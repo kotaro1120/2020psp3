@@ -116,6 +116,7 @@ void DynamicProgLimited(Menu arrayItem[], int items, int nap_size)
         }
         cur_j = pre_j;
     }
+    
     for(i=1; i <= items; i++)
     {
         for(j=1; j <= nap_size; j++)
